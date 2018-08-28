@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.inspect.qrci.dao.mapper.ProjectMapper">
+    <resultMap id="BaseResultMap" type="com.share.inspect.qrci.enter.Project">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="project_num" property="projectNum" jdbcType="VARCHAR"/>
+        <result column="project_name" property="projectName" jdbcType="VARCHAR"/>
+        <result column="project_position" property="projectPosition" jdbcType="VARCHAR"/>
+        <result column="finish_time" property="finishTime" jdbcType="BIGINT"/>
+        <result column="project_type" property="projectType" jdbcType="VARCHAR"/>
+        <result column="development_unit" property="developmentUnit" jdbcType="VARCHAR"/>
+        <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+        <result column="comment" property="comment" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        project_num,
+        project_name,
+        project_position,
+        finish_time,
+        project_type,
+        development_unit,
+        manufacturer,
+        create_time,
+        update_time,
+        comment
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_project
+        where id = #{ id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_project
+        where id = #{ id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        delete from t_project
+        where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{ id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+
+    <insert id="insertSelective" parameterType="com.share.inspect.qrci.enter.Project">
+        insert into t_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projectNum != null">
+                project_num,
+            </if>
+            <if test="projectName != null">
+                project_name,
+            </if>
+            <if test="projectPosition != null">
+                project_position,
+            </if>
+            <if test="finishTime != null">
+                finish_time,
+            </if>
+            <if test="projectType != null">
+                project_type,
+            </if>
+            <if test="developmentUnit != null">
+                development_unit,
+            </if>
+            <if test="manufacturer != null">
+                manufacturer,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType= BIGINT },
+            </if>
+            <if test="projectNum != null">
+                #{ projectNum,jdbcType= VARCHAR },
+            </if>
+            <if test="projectName != null">
+                #{ projectName,jdbcType= VARCHAR },
+            </if>
+            <if test="projectPosition != null">
+                #{ projectPosition,jdbcType= VARCHAR },
+            </if>
+            <if test="finishTime != null">
+                #{ finishTime,jdbcType= BIGINT },
+            </if>
+            <if test="projectType != null">
+                #{ projectType,jdbcType= VARCHAR },
+            </if>
+            <if test="developmentUnit != null">
+                #{ developmentUnit,jdbcType= VARCHAR },
+            </if>
+            <if test="manufacturer != null">
+                #{ manufacturer,jdbcType= VARCHAR },
+            </if>
+            <if test="createTime != null">
+                #{ createTime,jdbcType= BIGINT },
+            </if>
+            <if test="updateTime != null">
+                #{ updateTime,jdbcType= BIGINT },
+            </if>
+            <if test="comment != null">
+                #{ comment,jdbcType= VARCHAR },
+            </if>
+        </trim>
+        <selectKey resultType="java.lang.Long" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <select id="selectByPropertyByPage" resultMap="BaseResultMap"
+            parameterType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_project
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="projectNum != null">
+            AND project_num = #{ projectNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="projectName != null">
+            AND project_name = #{ projectName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="projectPosition != null">
+            AND project_position = #{ projectPosition,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="finishTime != null">
+            AND finish_time = #{ finishTime,jdbcType= BIGINT }
+        </if>
+        <if test="projectType != null">
+            AND project_type = #{ projectType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="developmentUnit != null">
+            AND development_unit = #{ developmentUnit,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="manufacturer != null">
+            AND manufacturer = #{ manufacturer,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{ updateTime,jdbcType= BIGINT }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+        ORDER BY id desc
+    </select>
+
+    <select id="selectCountByProperty" resultType="java.lang.Integer"
+            parameterType="Map">
+        select
+        count(1)
+        from t_project
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="projectNum != null">
+            AND project_num = #{ projectNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="projectName != null">
+            AND project_name = #{ projectName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="projectPosition != null">
+            AND project_position = #{ projectPosition,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="finishTime != null">
+            AND finish_time = #{ finishTime,jdbcType= BIGINT }
+        </if>
+        <if test="projectType != null">
+            AND project_type = #{ projectType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="developmentUnit != null">
+            AND development_unit = #{ developmentUnit,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="manufacturer != null">
+            AND manufacturer = #{ manufacturer,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{ updateTime,jdbcType= BIGINT }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.share.inspect.qrci.enter.Project">
+        <if test="id !=null">
+            update t_project
+            <set>
+                <if test="id != null">
+                    id = #{ id,jdbcType= BIGINT },
+                </if>
+                <if test="projectNum != null">
+                    project_num = #{ projectNum,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="projectName != null">
+                    project_name = #{ projectName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="projectPosition != null">
+                    project_position = #{ projectPosition,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="finishTime != null">
+                    finish_time = #{ finishTime,jdbcType= BIGINT },
+                </if>
+                <if test="projectType != null">
+                    project_type = #{ projectType,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="developmentUnit != null">
+                    development_unit = #{ developmentUnit,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="manufacturer != null">
+                    manufacturer = #{ manufacturer,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="createTime != null">
+                    create_time = #{ createTime,jdbcType= BIGINT },
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{ updateTime,jdbcType= BIGINT },
+                </if>
+                <if test="comment != null">
+                    comment = #{ comment,jdbcType=
+                        VARCHAR }
+                </if>
+            </set>
+            where id = #{ id,jdbcType=BIGINT}
+        </if>
+    </update>
+
+</mapper>

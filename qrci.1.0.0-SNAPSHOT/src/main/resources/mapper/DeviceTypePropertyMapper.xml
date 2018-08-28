@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.inspect.qrci.dao.mapper.DeviceTypePropertyMapper">
+    <resultMap id="BaseResultMap" type="com.share.inspect.qrci.enter.DeviceTypeProperty">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="device_type_id" property="deviceTypeId" jdbcType="BIGINT"/>
+        <result column="property_name" property="propertyName" jdbcType="VARCHAR"/>
+        <result column="property_value" property="propertyValue" jdbcType="VARCHAR"/>
+        <result column="property_key" property="propertyKey" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        device_type_id,
+        property_name,
+        property_value,
+        property_key
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_device_type_property
+        where id = #{ id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_device_type_property
+        where id = #{ id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        delete from t_device_type_property
+        where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{ id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+
+    <insert id="insertSelective" parameterType="com.share.inspect.qrci.enter.DeviceTypeProperty">
+        insert into t_device_type_property
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deviceTypeId != null">
+                device_type_id,
+            </if>
+            <if test="propertyName != null">
+                property_name,
+            </if>
+            <if test="propertyValue != null">
+                property_value,
+            </if>
+            <if test="propertyKey != null">
+                property_key,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType= BIGINT },
+            </if>
+            <if test="deviceTypeId != null">
+                #{ deviceTypeId,jdbcType= BIGINT },
+            </if>
+            <if test="propertyName != null">
+                #{ propertyName,jdbcType= VARCHAR },
+            </if>
+            <if test="propertyValue != null">
+                #{ propertyValue,jdbcType= VARCHAR },
+            </if>
+            <if test="propertyKey != null">
+                #{ propertyKey,jdbcType= VARCHAR },
+            </if>
+        </trim>
+        <selectKey resultType="java.lang.Long" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <select id="selectByPropertyByPage" resultMap="BaseResultMap"
+            parameterType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_device_type_property
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{ deviceTypeId,jdbcType= BIGINT }
+        </if>
+        <if test="propertyName != null">
+            AND property_name = #{ propertyName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="propertyValue != null">
+            AND property_value = #{ propertyValue,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="propertyKey != null">
+            AND property_key = #{ propertyKey,jdbcType=
+            VARCHAR }
+        </if>
+        ORDER BY id desc
+    </select>
+
+    <select id="selectCountByProperty" resultType="java.lang.Integer"
+            parameterType="Map">
+        select
+        count(1)
+        from t_device_type_property
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{ deviceTypeId,jdbcType= BIGINT }
+        </if>
+        <if test="propertyName != null">
+            AND property_name = #{ propertyName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="propertyValue != null">
+            AND property_value = #{ propertyValue,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="propertyKey != null">
+            AND property_key = #{ propertyKey,jdbcType=
+            VARCHAR }
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.share.inspect.qrci.enter.DeviceTypeProperty">
+        <if test="id !=null">
+            update t_device_type_property
+            <set>
+                <if test="id != null">
+                    id = #{ id,jdbcType= BIGINT },
+                </if>
+                <if test="deviceTypeId != null">
+                    device_type_id = #{ deviceTypeId,jdbcType= BIGINT },
+                </if>
+                <if test="propertyName != null">
+                    property_name = #{ propertyName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="propertyValue != null">
+                    property_value = #{ propertyValue,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="propertyKey != null">
+                    property_key = #{ propertyKey,jdbcType=
+                        VARCHAR }
+                </if>
+            </set>
+            where id = #{ id,jdbcType=BIGINT}
+        </if>
+    </update>
+
+</mapper>

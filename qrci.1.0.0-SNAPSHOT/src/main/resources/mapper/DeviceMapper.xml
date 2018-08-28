@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.inspect.qrci.dao.mapper.DeviceMapper">
+    <resultMap id="BaseResultMap" type="com.share.inspect.qrci.enter.Device">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="device_num" property="deviceNum" jdbcType="VARCHAR"/>
+        <result column="device_name" property="deviceName" jdbcType="VARCHAR"/>
+        <result column="device_type_name" property="deviceTypeName" jdbcType="VARCHAR"/>
+        <result column="device_type_id" property="deviceTypeId" jdbcType="BIGINT"/>
+        <result column="product_num" property="productNum" jdbcType="VARCHAR"/>
+        <result column="zone_area_id" property="zoneAreaId" jdbcType="BIGINT"/>
+        <result column="producter_name" property="producterName" jdbcType="VARCHAR"/>
+        <result column="line_id" property="lineId" jdbcType="BIGINT"/>
+        <result column="project_id" property="projectId" jdbcType="BIGINT"/>
+        <result column="comment" property="comment" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_tiem" property="updateTiem" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        device_num,
+        device_name,
+        device_type_name,
+        device_type_id,
+        product_num,
+        zone_area_id,
+        producter_name,
+        line_id,
+        project_id,
+        comment,
+        create_time,
+        update_tiem
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_device
+        where id = #{ id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_device
+        where id = #{ id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        delete from t_device
+        where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{ id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+
+    <insert id="insertSelective" parameterType="com.share.inspect.qrci.enter.Device">
+        insert into t_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deviceNum != null">
+                device_num,
+            </if>
+            <if test="deviceName != null">
+                device_name,
+            </if>
+            <if test="deviceTypeName != null">
+                device_type_name,
+            </if>
+            <if test="deviceTypeId != null">
+                device_type_id,
+            </if>
+            <if test="productNum != null">
+                product_num,
+            </if>
+            <if test="zoneAreaId != null">
+                zone_area_id,
+            </if>
+            <if test="producterName != null">
+                producter_name,
+            </if>
+            <if test="lineId != null">
+                line_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTiem != null">
+                update_tiem,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType= BIGINT },
+            </if>
+            <if test="deviceNum != null">
+                #{ deviceNum,jdbcType= VARCHAR },
+            </if>
+            <if test="deviceName != null">
+                #{ deviceName,jdbcType= VARCHAR },
+            </if>
+            <if test="deviceTypeName != null">
+                #{ deviceTypeName,jdbcType= VARCHAR },
+            </if>
+            <if test="deviceTypeId != null">
+                #{ deviceTypeId,jdbcType= BIGINT },
+            </if>
+            <if test="productNum != null">
+                #{ productNum,jdbcType= VARCHAR },
+            </if>
+            <if test="zoneAreaId != null">
+                #{ zoneAreaId,jdbcType= BIGINT },
+            </if>
+            <if test="producterName != null">
+                #{ producterName,jdbcType= VARCHAR },
+            </if>
+            <if test="lineId != null">
+                #{ lineId,jdbcType= BIGINT },
+            </if>
+            <if test="projectId != null">
+                #{ projectId,jdbcType= BIGINT },
+            </if>
+            <if test="comment != null">
+                #{ comment,jdbcType= VARCHAR },
+            </if>
+            <if test="createTime != null">
+                #{ createTime,jdbcType= BIGINT },
+            </if>
+            <if test="updateTiem != null">
+                #{ updateTiem,jdbcType= BIGINT },
+            </if>
+        </trim>
+        <selectKey resultType="java.lang.Long" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <select id="selectByPropertyByPage" resultMap="BaseResultMap"
+            parameterType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_device
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="deviceNum != null">
+            AND device_num = #{ deviceNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceName != null">
+            AND device_name = #{ deviceName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceTypeName != null">
+            AND device_type_name = #{ deviceTypeName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{ deviceTypeId,jdbcType= BIGINT }
+        </if>
+        <if test="productNum != null">
+            AND product_num = #{ productNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="zoneAreaId != null">
+            AND zone_area_id = #{ zoneAreaId,jdbcType= BIGINT }
+        </if>
+        <if test="producterName != null">
+            AND producter_name = #{ producterName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="lineId != null">
+            AND line_id = #{ lineId,jdbcType= BIGINT }
+        </if>
+        <if test="projectId != null">
+            AND project_id = #{ projectId,jdbcType= BIGINT }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTiem != null">
+            AND update_tiem = #{ updateTiem,jdbcType= BIGINT }
+        </if>
+        ORDER BY id desc
+    </select>
+
+    <select id="selectCountByProperty" resultType="java.lang.Integer"
+            parameterType="Map">
+        select
+        count(1)
+        from t_device
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="deviceNum != null">
+            AND device_num = #{ deviceNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceName != null">
+            AND device_name = #{ deviceName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceTypeName != null">
+            AND device_type_name = #{ deviceTypeName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{ deviceTypeId,jdbcType= BIGINT }
+        </if>
+        <if test="productNum != null">
+            AND product_num = #{ productNum,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="zoneAreaId != null">
+            AND zone_area_id = #{ zoneAreaId,jdbcType= BIGINT }
+        </if>
+        <if test="producterName != null">
+            AND producter_name = #{ producterName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="lineId != null">
+            AND line_id = #{ lineId,jdbcType= BIGINT }
+        </if>
+        <if test="projectId != null">
+            AND project_id = #{ projectId,jdbcType= BIGINT }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTiem != null">
+            AND update_tiem = #{ updateTiem,jdbcType= BIGINT }
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.share.inspect.qrci.enter.Device">
+        <if test="id !=null">
+            update t_device
+            <set>
+                <if test="id != null">
+                    id = #{ id,jdbcType= BIGINT },
+                </if>
+                <if test="deviceNum != null">
+                    device_num = #{ deviceNum,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="deviceName != null">
+                    device_name = #{ deviceName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="deviceTypeName != null">
+                    device_type_name = #{ deviceTypeName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="deviceTypeId != null">
+                    device_type_id = #{ deviceTypeId,jdbcType= BIGINT },
+                </if>
+                <if test="productNum != null">
+                    product_num = #{ productNum,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="zoneAreaId != null">
+                    zone_area_id = #{ zoneAreaId,jdbcType= BIGINT },
+                </if>
+                <if test="producterName != null">
+                    producter_name = #{ producterName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="lineId != null">
+                    line_id = #{ lineId,jdbcType= BIGINT },
+                </if>
+                <if test="projectId != null">
+                    project_id = #{ projectId,jdbcType= BIGINT },
+                </if>
+                <if test="comment != null">
+                    comment = #{ comment,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="createTime != null">
+                    create_time = #{ createTime,jdbcType= BIGINT },
+                </if>
+                <if test="updateTiem != null">
+                    update_tiem = #{ updateTiem,jdbcType= BIGINT }
+                </if>
+            </set>
+            where id = #{ id,jdbcType=BIGINT}
+        </if>
+    </update>
+
+</mapper>

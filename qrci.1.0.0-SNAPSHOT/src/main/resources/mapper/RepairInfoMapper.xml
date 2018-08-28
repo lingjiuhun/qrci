@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.inspect.qrci.dao.mapper.RepairInfoMapper">
+    <resultMap id="BaseResultMap" type="com.share.inspect.qrci.enter.RepairInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="telphone" property="telphone" jdbcType="VARCHAR"/>
+        <result column="repair_type" property="repairType" jdbcType="VARCHAR"/>
+        <result column="ower_id" property="owerId" jdbcType="BIGINT"/>
+        <result column="ower_type" property="owerType" jdbcType="VARCHAR"/>
+        <result column="repair_unit_type" property="repairUnitType" jdbcType="VARCHAR"/>
+        <result column="comment" property="comment" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        telphone,
+        repair_type,
+        ower_id,
+        ower_type,
+        repair_unit_type,
+        comment,
+        create_time,
+        update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_repair_info
+        where id = #{ id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_repair_info
+        where id = #{ id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        delete from t_repair_info
+        where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{ id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+
+    <insert id="insertSelective" parameterType="com.share.inspect.qrci.enter.RepairInfo">
+        insert into t_repair_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="telphone != null">
+                telphone,
+            </if>
+            <if test="repairType != null">
+                repair_type,
+            </if>
+            <if test="owerId != null">
+                ower_id,
+            </if>
+            <if test="owerType != null">
+                ower_type,
+            </if>
+            <if test="repairUnitType != null">
+                repair_unit_type,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType= BIGINT },
+            </if>
+            <if test="telphone != null">
+                #{ telphone,jdbcType= VARCHAR },
+            </if>
+            <if test="repairType != null">
+                #{ repairType,jdbcType= VARCHAR },
+            </if>
+            <if test="owerId != null">
+                #{ owerId,jdbcType= BIGINT },
+            </if>
+            <if test="owerType != null">
+                #{ owerType,jdbcType= VARCHAR },
+            </if>
+            <if test="repairUnitType != null">
+                #{ repairUnitType,jdbcType= VARCHAR },
+            </if>
+            <if test="comment != null">
+                #{ comment,jdbcType= VARCHAR },
+            </if>
+            <if test="createTime != null">
+                #{ createTime,jdbcType= BIGINT },
+            </if>
+            <if test="updateTime != null">
+                #{ updateTime,jdbcType= BIGINT },
+            </if>
+        </trim>
+        <selectKey resultType="java.lang.Long" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <select id="selectByPropertyByPage" resultMap="BaseResultMap"
+            parameterType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_repair_info
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="telphone != null">
+            AND telphone = #{ telphone,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="repairType != null">
+            AND repair_type = #{ repairType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="owerId != null">
+            AND ower_id = #{ owerId,jdbcType= BIGINT }
+        </if>
+        <if test="owerType != null">
+            AND ower_type = #{ owerType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="repairUnitType != null">
+            AND repair_unit_type = #{ repairUnitType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{ updateTime,jdbcType= BIGINT }
+        </if>
+        ORDER BY id desc
+    </select>
+
+    <select id="selectCountByProperty" resultType="java.lang.Integer"
+            parameterType="Map">
+        select
+        count(1)
+        from t_repair_info
+        where 1=1
+        <if test="id != null">
+            AND id = #{ id,jdbcType= BIGINT }
+        </if>
+        <if test="telphone != null">
+            AND telphone = #{ telphone,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="repairType != null">
+            AND repair_type = #{ repairType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="owerId != null">
+            AND ower_id = #{ owerId,jdbcType= BIGINT }
+        </if>
+        <if test="owerType != null">
+            AND ower_type = #{ owerType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="repairUnitType != null">
+            AND repair_unit_type = #{ repairUnitType,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="comment != null">
+            AND comment = #{ comment,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{ createTime,jdbcType= BIGINT }
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{ updateTime,jdbcType= BIGINT }
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.share.inspect.qrci.enter.RepairInfo">
+        <if test="id !=null">
+            update t_repair_info
+            <set>
+                <if test="id != null">
+                    id = #{ id,jdbcType= BIGINT },
+                </if>
+                <if test="telphone != null">
+                    telphone = #{ telphone,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="repairType != null">
+                    repair_type = #{ repairType,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="owerId != null">
+                    ower_id = #{ owerId,jdbcType= BIGINT },
+                </if>
+                <if test="owerType != null">
+                    ower_type = #{ owerType,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="repairUnitType != null">
+                    repair_unit_type = #{ repairUnitType,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="comment != null">
+                    comment = #{ comment,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="createTime != null">
+                    create_time = #{ createTime,jdbcType= BIGINT },
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{ updateTime,jdbcType= BIGINT }
+                </if>
+            </set>
+            where id = #{ id,jdbcType=BIGINT}
+        </if>
+    </update>
+
+</mapper>
