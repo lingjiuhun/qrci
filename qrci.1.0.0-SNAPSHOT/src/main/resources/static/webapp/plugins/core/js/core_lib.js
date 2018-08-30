@@ -510,7 +510,9 @@
   	 // 集成jqgrid插件 url:查询URL caption:标题 colNames:列名 colModel:列对应实体类名 --用于弹出框查询 @2016.7.18 baitao(多参数版)
   	tablePlugin : function(url,caption, colNames, colModel) {
   		$("#"+page_util.id).jqGrid({
-  			url : url,
+            repeatitems : false,
+            jsonReader : {root:'data.list',total:'data.total'},
+                url : url,
   			caption : caption,
   			mtype : page_util.mtype,
   			styleUI : page_util.styleUI,// 设置jqgrid的全局样式为bootstrap样式

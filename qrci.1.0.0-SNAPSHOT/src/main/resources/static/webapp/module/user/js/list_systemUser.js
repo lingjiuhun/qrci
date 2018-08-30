@@ -37,7 +37,8 @@
 		               ,{ name: 'roleName', index: 'roleName', width: 10, hidden: false}
 		               ,{ name: 'createTime', index: 'createTime', width: 10,
 		            	   formatter:function(cellvalue, options, rowObject){
-		            		   return cellvalue.substring(0,11);
+		               			return cellvalue;
+		            		  // return cellvalue.substring(0,11);
 		            	   }
 		               }
 		           ];
