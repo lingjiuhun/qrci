@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.inspect.qrci.dao.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.share.inspect.qrci.enter.Role">
+        <id column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="common" property="common" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="create_userid" property="createUserid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        role_id,
+        role_name,
+        common,
+        create_time,
+        create_userid
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from system_role
+        where  role_id = #{ roleId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from system_role
+        where role_id =  #{ roleId,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        delete from system_role
+        where role_id in
+        <foreach collection="list" item="roleId" index="index"
+                 open="(" close=")" separator=",">
+         #{ roleId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+
+    <insert id="insertSelective" parameterType="com.share.inspect.qrci.enter.Role">
+        insert into system_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+            role_id,
+            </if>
+            <if test="roleName != null">
+            role_name,
+            </if>
+            <if test="common != null">
+            common,
+            </if>
+            <if test="createTime != null">
+            create_time,
+            </if>
+            <if test="createUserid != null">
+            create_userid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+             #{ roleId,jdbcType= BIGINT },
+            </if>
+            <if test="roleName != null">
+             #{ roleName,jdbcType= VARCHAR },
+            </if>
+            <if test="common != null">
+             #{ common,jdbcType= VARCHAR },
+            </if>
+            <if test="createTime != null">
+             #{ createTime,jdbcType= VARCHAR },
+            </if>
+            <if test="createUserid != null">
+             #{ createUserid,jdbcType= BIGINT },
+            </if>
+        </trim>
+        <selectKey resultType="java.lang.Long" order="AFTER"
+                   keyProperty="roleId">
+            SELECT LAST_INSERT_ID() AS role_id
+        </selectKey>
+    </insert>
+
+    <select id="selectByPropertyByPage" resultMap="BaseResultMap"
+            parameterType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from system_role
+        where 1=1
+        <if test="roleId != null">
+            AND role_id =  #{ roleId,jdbcType= BIGINT }
+        </if>
+        <if test="roleName != null">
+            AND role_name =  #{ roleName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="common != null">
+            AND common =  #{ common,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time =  #{ createTime,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createUserid != null">
+            AND create_userid =  #{ createUserid,jdbcType= BIGINT }
+        </if>
+        ORDER BY role_id desc
+    </select>
+
+    <select id="selectCountByProperty" resultType="java.lang.Integer"
+            parameterType="Map">
+        select
+        count(1)
+        from system_role
+        where 1=1
+        <if test="roleId != null">
+            AND role_id =  #{ roleId,jdbcType= BIGINT }
+        </if>
+        <if test="roleName != null">
+            AND role_name =  #{ roleName,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="common != null">
+            AND common =  #{ common,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createTime != null">
+            AND create_time =  #{ createTime,jdbcType=
+            VARCHAR }
+        </if>
+        <if test="createUserid != null">
+            AND create_userid =  #{ createUserid,jdbcType= BIGINT }
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.share.inspect.qrci.enter.Role">
+        <if test="roleId !=null">
+            update system_role
+            <set>
+                <if test="roleId != null">
+                    role_id =  #{ roleId,jdbcType= BIGINT },
+                </if>
+                <if test="roleName != null">
+                    role_name =  #{ roleName,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="common != null">
+                    common =  #{ common,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="createTime != null">
+                    create_time =  #{ createTime,jdbcType=
+                        VARCHAR },
+                </if>
+                <if test="createUserid != null">
+                    create_userid =  #{ createUserid,jdbcType= BIGINT }
+                </if>
+            </set>
+            where role_id =  #{ roleId,jdbcType=BIGINT}
+        </if>
+    </update>
+
+</mapper>
