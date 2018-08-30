@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="../../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../plugins/bootstrap/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../plugins/bootstrap/css/animate.min.css" rel="stylesheet">
+	<link href="../../../plugins/core/css/style.min.css" rel="stylesheet">
+	<link href="../../../plugins/jqgrid/ui.jqgrid.css" rel="stylesheet">
+	<link href="../../../plugins/layer/skin/layer.ext.css" rel="stylesheet">
+	<link href="../../../plugins/core/css/basicStyle.css" rel="stylesheet">
+
+	<script type="text/javascript" src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../../plugins/jqgrid/grid.locale-cn.js"></script>
+	<script type="text/javascript" src="../../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="../../../plugins/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../../../plugins/layer/extend/layer.ext.js"></script>
+	<script type="text/javascript" src="../../../plugins/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../plugins/core/js/core_lib.js"></script>
+<style>
+.form-horizontal .control-label {text-align:right!important;}
+</style>
+</head>
+<body>
+	<div style="width: 100%; height: 100%;">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>修改用户信息</h5>
+			</div>
+			<div class="ibox-content  text-center">
+				<form class="form-horizontal  m-t" role="form">
+					<input type="hidden" placeholder="" name="userId" class="form-control" gps="form" value="">
+						<div class="form-group">
+							<!-- Text input-->
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">用户名</label>
+							<div class="col-xs-5">
+								<input type="text" placeholder="输入用户名" name="userName" class="form-control" gps="form" value="" required disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<!-- Text input-->
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">真实姓名</label>
+							<div class="col-xs-5">
+								<input type="text" placeholder="输入真实姓名" name="realName" class="form-control" gps="form" value="" required>
+							</div>
+						</div>
+						<!--  
+						<div class="form-group">
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">部门</label>
+							<div class="col-xs-5">
+								<input type="hidden" placeholder="" name="departmentId" id="seachValue_department" class="form-control" gps="form"
+								       class="form-control" value="${systemUser.departmentId}" >
+								<input type="text" placeholder="" name="departmentName" id="seachText_department" class="form-control" gps="form"
+								       class="form-control" value="${systemUser.departmentName}" readonly onclick="utilButtons.openLayer('department',800,300)">
+							</div>
+						</div>
+						-->
+						<div class="form-group">
+							<!-- Text input-->
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">联系电话</label>
+							<div class="col-xs-5">
+								<input type="text" placeholder="输入电话" name="phone" class="form-control phoneValidator" gps="form" value="" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<!-- Text input-->
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">邮箱地址</label>
+							<div class="col-xs-5">
+								<input type="text" placeholder="输入邮箱" name="email" class="form-control eamilValidator" gps="form" value="" required>
+							</div>
+						</div>
+							<div class="form-group">
+							<!-- Text input-->
+							<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">时间</label>
+							<div class="col-xs-5">
+								<input type="text" placeholder="" name="createTime" class="form-control" gps="form" value="" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+						<label class="col-xs-offset-2 col-xs-2 control-label" for="input01">所属角色</label>
+							<div class="col-xs-5">
+								<input type="hidden" placeholder="" name="roleId" id="seachValue_role" class="form-control" gps="form"
+								 value="" required>
+								<input type="text" placeholder="" name="roleName" id="seachText_role" class="form-control" gps="form"
+								 value="" readonly onclick="window_util.openLayer('role',800,300)" required>
+						</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-5">
+								<input type="hidden" placeholder="" name="delFlag" class="form-control" gps="form" value="">
+							</div>
+						</div>
+					
+						<div class="form-group ">
+				         <button type="button" class="btn btn-default padd_R" onclick="edit_user.goback()">返回</button>
+				         <button type="button" class="btn btn-primary" onclick="edit_user.submitForm()">保存内容</button>
+						</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/edit_user.js"></script>
+</body>
+</html>

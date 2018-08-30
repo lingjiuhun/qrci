@@ -10,7 +10,7 @@ import com.share.inspect.qrci.enter.User;
 /**
 * @Author:
 * @Description: mapper接口
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 @Component
 @Mapper
@@ -24,9 +24,9 @@ public interface UserMapper {
 * @Author:
 * @return: com.share.inspect.qrci.enter.User
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
-User selectByPrimaryKey(Long userId);
+User selectByPrimaryKey(String userId);
 
 /**
 * 根据主键删除
@@ -35,9 +35,9 @@ User selectByPrimaryKey(Long userId);
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
-int deleteByPrimaryKey(Long userId);
+int deleteByPrimaryKey(String userId);
 
 /**
 * 根据主键批量删除
@@ -46,7 +46,7 @@ int deleteByPrimaryKey(Long userId);
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 int deleteBatchByPrimaryKey(List
 <String> list);
@@ -59,7 +59,7 @@ int deleteBatchByPrimaryKey(List
     * @Author:
     * @return: int
     * @exception:
-    * @date: 2018-8-29 20:37:15
+    * @date: 2018-8-30 18:54:44
     */
     int insertSelective(User record);
 
@@ -70,7 +70,7 @@ int deleteBatchByPrimaryKey(List
     * @Author:
     * @return: java.util.List<com.share.inspect.qrci.enter.User>
     * @exception:
-    * @date: 2018-8-29 20:37:15
+    * @date: 2018-8-30 18:54:44
     */
     List<User> selectByPropertyByPage(Map map);
 
@@ -81,7 +81,7 @@ int deleteBatchByPrimaryKey(List
     * @Author:
     * @return: int
     * @exception:
-    * @date: 2018-8-29 20:37:15
+    * @date: 2018-8-30 18:54:44
     */
     int selectCountByProperty(Map map);
 
@@ -92,7 +92,7 @@ int deleteBatchByPrimaryKey(List
     * @Author:
     * @return: int
     * @exception:
-    * @date: 2018-8-29 20:37:15
+    * @date: 2018-8-30 18:54:44
     */
     int updateByPrimaryKeySelective(User record);
 

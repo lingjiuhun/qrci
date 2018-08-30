@@ -9,7 +9,7 @@ import com.share.inspect.qrci.enter.User;
 /**
 * @Author:
 * @Description: 服务接口
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 public interface IUserService {
 
@@ -22,7 +22,7 @@ public interface IUserService {
 * @Author:
 * @return: com.github.pagehelper.PageInfo<com.share.inspect.qrci.enter.User>
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 PageInfo<User> selectByPage(Map
 <String, Object> param, Integer page, Integer pageSize) throws Exception;
@@ -35,7 +35,7 @@ PageInfo<User> selectByPage(Map
 * @Author:
 * @return: java.lang.Integer
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 Integer insert(User user) throws Exception;
 
@@ -47,7 +47,7 @@ Integer insert(User user) throws Exception;
 * @Author:
 * @return: java.lang.Integer
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 Integer updateById(User user) throws Exception;
 
@@ -58,9 +58,9 @@ Integer updateById(User user) throws Exception;
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
-int deleteById(Long userId) throws Exception;
+int deleteById(String userId) throws Exception;
 
 /**
 * 根据主键批量删除
@@ -69,7 +69,7 @@ int deleteById(Long userId) throws Exception;
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 Integer deleteBatchByIds(List userIds) throws Exception;
 
@@ -81,9 +81,9 @@ Integer deleteBatchByIds(List userIds) throws Exception;
 * @Author:
 * @return: com.share.inspect.qrci.enter.User
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
-User selectById(Long userId) throws Exception;
+User selectById(String userId) throws Exception;
 
 
 }

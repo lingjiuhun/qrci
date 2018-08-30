@@ -1,5 +1,7 @@
 package com.share.inspect.qrci.service.impl;
 
+import com.code.base.util.utils.PageUtil;
+import com.code.base.util.utils.ValidateUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import java.util.List;
@@ -36,7 +38,7 @@ private UserMapper userMapper;
 * @Author:
 * @return: com.github.pagehelper.PageInfo<com.share.inspect.qrci.enter.User>
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 @Override
 public PageInfo<User> selectByPage(Map
@@ -59,7 +61,7 @@ return pageInfo;
 * @Author:
 * @return: java.lang.Integer
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 @Override
 public Integer insert(User user) throws Exception {
@@ -86,7 +88,7 @@ return r;
 * @Author:
 * @return: java.lang.Integer
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 @Override
 public Integer updateById(User user) throws Exception {
@@ -107,21 +109,21 @@ return r;
 /**
 * 根据主键删除
 *
-* @param userId
+* @param userIds
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 @Override
-public int deleteById(Long userId) throws Exception {
+public int deleteById(String userIds) throws Exception {
 int r = 0;
 //userId非空判断
-if (userId == null || userId == 0) {
-return -1;
+if (!ValidateUtils.isNotNullStr(userIds)) {
+    return -1;
 }
 //数据删除
-r = userMapper.deleteByPrimaryKey(userId);
+    r = userMapper.deleteBatchByPrimaryKey(PageUtil.getIdsForList(userIds));
 
 return r;
 }
@@ -134,7 +136,7 @@ return r;
 * @Author:
 * @return: int
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
 public Integer deleteBatchByIds(List userIds) throws Exception{
 int result = -1;
@@ -156,12 +158,12 @@ return result;
 * @Author:
 * @return: com.share.inspect.qrci.enter.User
 * @exception:
-* @date: 2018-8-29 20:37:15
+* @date: 2018-8-30 18:54:44
 */
-public User selectById(Long userId) throws Exception {
+public User selectById(String userId) throws Exception {
 User user = null;
 //id非空判断
-if (userId != null || userId > 0) {
+if (ValidateUtils.isNotNullStr(userId)) {
 user = userMapper.selectByPrimaryKey(userId);
 }
 return user;

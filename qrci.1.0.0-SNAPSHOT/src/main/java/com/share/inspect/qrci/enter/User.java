@@ -6,7 +6,7 @@ public class User {
 /**
 * 用户主键
 */
-private Long userId;
+private String userId;
 
 /**
 * 用户名
@@ -74,10 +74,15 @@ private String userPosition;
 private Long createUserId;
 
 /**
+* 更新时间
+*/
+private Long updateTime;
+
+/**
 * 用户主键
 * @return user_id 用户主键
 */
-public Long getUserId() {
+public String getUserId() {
 return userId;
 }
 
@@ -85,8 +90,8 @@ return userId;
 * 用户主键
 * @param userId 用户主键
 */
-public void setUserId(Long userId) {
-this.userId = userId;
+public void setUserId(String userId) {
+this.userId = userId == null ? null : userId.trim();
 }
 
 /**
@@ -295,5 +300,21 @@ return createUserId;
 */
 public void setCreateUserId(Long createUserId) {
 this.createUserId = createUserId;
+}
+
+/**
+* 更新时间
+* @return update_time 更新时间
+*/
+public Long getUpdateTime() {
+return updateTime;
+}
+
+/**
+* 更新时间
+* @param updateTime 更新时间
+*/
+public void setUpdateTime(Long updateTime) {
+this.updateTime = updateTime;
 }
 }

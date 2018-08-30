@@ -227,9 +227,18 @@
              skin: 'layui-layer-molv', //样式类名弹出层
              btn: ['取消', '确认'], 
              btn2 : function () {
-                 $.post(urls, function (result) {
-                     layer.msg(result.msg);
-                     $('#'+page_util.id).trigger("reloadGrid");
+                 $.ajax({
+                     url:urls,
+                     type:"delete",
+                     contentType:"application/json",
+                     dataType:"json",
+                     success:function(result){
+                         layer.msg(result.message);
+                         $('#'+page_util.id).trigger("reloadGrid");
+                     },
+                     error:function(xhr,textstatus,thrown){
+
+                     }
                  });
              },yes : function(index){
             	 layer.close(index);
@@ -239,8 +248,8 @@
              layer.close(index);
          });
 	},// 新增或修改表单提交
-	submitForm : function(url, params,list_url) {
-		params += "={'date':'" + new Date().getTime() + "'";
+	submitForm : function(url, params,list_url,type) {
+		var params = "{'date':'" + new Date().getTime() + "'";
 		$('form input:text[ gps="form"]').each(function() {
 			params += ",'" + $(this).attr('name') + "'";
 			params += ":'" + $.trim($(this).val()) + "'";
@@ -284,17 +293,27 @@
 			params += "'";
 		}
 		params += "}";
-		$.post(url, params, function(result) {
-			layer.msg(result.msg, {
-				time : 500
-			}, function() {
-				if(result.success){
-					button_util.winToUrl(list_url);
-				}else{
-					return false;
-				}
-			});
-		});
+        var jsonObj = eval("("+params+")");
+        $.ajax({
+            url:url,
+            type:type,
+            contentType:"application/json;charset=utf-8",
+            dataType:"json",
+            timeout:10000,
+           // data:JSON.stringify(params),
+            data:JSON.stringify(jsonObj),
+            success:function(result){
+                layer.msg(result.message, {
+                    time : 500
+                }, function() {
+                    if(result.success){
+                        button_util.winToUrl(list_url);
+                    }else{
+                        return false;
+                    }
+                });
+            }
+        });
 	},// 新增或修改表单提交
 	submitFormFrame : function(url, params,list_url) {
 		params += "={'date':'" + new Date().getTime() + "'";
@@ -342,7 +361,7 @@
 		}
 		params += "}";
 		$.post(url, params, function(result) {
-			layer.msg(result.msg, {
+			layer.msg(result.message, {
 				time : 500
 			}, function() {
 				if(result.success){
