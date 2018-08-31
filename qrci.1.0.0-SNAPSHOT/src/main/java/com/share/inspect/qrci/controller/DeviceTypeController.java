@@ -1,6 +1,7 @@
 package com.share.inspect.qrci.controller;
 
 
+import com.code.base.util.utils.PageUtil;
 import com.code.base.util.utils.RestResponse;
 import com.github.pagehelper.PageInfo;
 import com.share.inspect.qrci.enter.DeviceType;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Log4j2
 @RestController
-@RequestMapping("/api/v1/deviceTypes")
+@RequestMapping("/api/v1/deviceType")
 @Api(description = "设备类型API", tags = "设备类型API")
 public class DeviceTypeController {
     @Autowired
@@ -94,10 +95,10 @@ public class DeviceTypeController {
      */
     @ApiOperation(value = "删除权限", notes = "删除权限")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public RestResponse doDelete(@PathVariable Long id) {
+    public RestResponse doDelete(@PathVariable String id) {
         RestResponse result = new RestResponse();
         try {
-            Integer r = deviceTypeServiceImpl.deleteById(id);
+            Integer r = deviceTypeServiceImpl.deleteBatchByIds(PageUtil.getIdsForList(id));
             if (r > 0) {
                 result.setSuccess(true).setMessage("success");
             } else {

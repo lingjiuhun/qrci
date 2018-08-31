@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="../../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../../plugins/bootstrap/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../../plugins/bootstrap/css/animate.min.css" rel="stylesheet">
+		<link href="../../../plugins/core/css/style.min.css" rel="stylesheet">
+		<link href="../../../plugins/jqgrid/ui.jqgrid.css" rel="stylesheet">
+		<link href="../../../plugins/layer/skin/layer.ext.css" rel="stylesheet">
+		<link href="../../../plugins/core/css/basicStyle.css" rel="stylesheet">
+
+		<script type="text/javascript" src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../../plugins/jqgrid/grid.locale-cn.js"></script>
+		<script type="text/javascript" src="../../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+		<script type="text/javascript" src="../../../plugins/layer/layer.min.js"></script>
+		<script type="text/javascript" src="../../../plugins/layer/extend/layer.ext.js"></script>
+		<script type="text/javascript" src="../../../plugins/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../../plugins/core/js/core_lib.js"></script>
+	</head>
+	<body class="white-bg">
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox ">
+						<div class="ibox-title">
+							<h5>设备类型管理
+							</h5>
+						</div>
+						<div class="ibox-content">
+						    <form class="form-group">
+				 				<div class="form-group col-xs-4 ">
+									<label class="control-label" for="input01">名称：</label>
+									<input type="text" class="input-medium search-query" name="typeName" gps="form">
+								</div>
+								<div class="form-group col-xs-4 ">
+									<label class="control-label" for="input01">编号：</label>
+									<input type="text" class="input-medium search-query" name="typeNum" gps="form">
+								</div>
+							<div class="form-group col-xs-12">
+								<button type="button" id="toAdd" class="btn btn-primary btn-sm" onclick="button_util.addPage()">
+									<span class="glyphicon glyphicon-ok"></span> 新增
+								</button>
+								<button type="button" id="toEdit" class="btn btn-primary btn-sm" onclick="button_util.editPage()">
+									<span class="glyphicon glyphicon-file"></span> 修改
+								</button>
+								<button type="button" id="toDel" class="btn btn-primary btn-sm" onclick="button_util.del()">
+									<span class="glyphicon glyphicon-trash"></span> 删除
+								</button>
+								<button type="button" class="btn btn-primary btn-sm" onclick="list_deviceType.search()">
+								<span class="glyphicon glyphicon-search"></span>  查询
+								</button>
+							</div>
+						    </form>
+						    <div class="form-group col-xs-12">
+								<div class="jqGrid_wrapper">
+									<table id="dtable"></table>
+									<div id="jqGridPager"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/list_deviceType.js"></script>
+</html>
+

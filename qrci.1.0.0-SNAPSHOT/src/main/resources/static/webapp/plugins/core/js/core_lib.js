@@ -513,7 +513,7 @@
       multiselect : true,// 是否多选框，默认多选
       multiboxonly:true,//默认
       rownumbers : true,// 是否显示行数，默认显示
-      mtype : "POST",// 是否显示行数，默认显示
+      mtype : "GET",// 是否显示行数，默认显示
   	rowNum : 10, // 默认每页10条
   	//listUrl : '',// 查询页面URL
   	searchWinText: 'seachText', //弹出框搜索栏ID
