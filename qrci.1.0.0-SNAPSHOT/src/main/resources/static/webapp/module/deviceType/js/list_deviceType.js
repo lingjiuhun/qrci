@@ -51,7 +51,7 @@
 			page_util.tablePlugin("/api/v1/deviceType",caption,colNames,colModel);
 		},// 查询
 		search:function(){
-			button_util.search('systemUser/list/notDelRole','systemUser');
+			button_util.search('/api/v1/deviceType','deviceType');
 		}
 	};
 $(function(){

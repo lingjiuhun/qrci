@@ -413,7 +413,7 @@
 		$('#'+page_util.id).jqGrid('setGridParam', {
 			url : url,
 			datatype : 'json',
-			mtype : 'POST',
+			mtype : 'GET',
 			page:1 
 		}).trigger("reloadGrid"); // 重新载入
 	}, 
@@ -530,7 +530,7 @@
   	tablePlugin : function(url,caption, colNames, colModel) {
   		$("#"+page_util.id).jqGrid({
             repeatitems : false,
-            jsonReader : {root:'data.list',total:'data.total'},
+            jsonReader : {root:'data.list',total:'data.total',pageSize:'pageSize'},
                 url : url,
   			caption : caption,
   			mtype : page_util.mtype,

@@ -1,6 +1,8 @@
 package com.share.inspect.qrci.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.code.base.util.utils.PageUtil;
 import com.code.base.util.utils.RestResponse;
 import com.github.pagehelper.PageInfo;
@@ -11,6 +13,10 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @Author:
@@ -40,10 +46,12 @@ public class DeviceTypeController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public RestResponse
             <PageInfo> getList(
+            @RequestParam(value = "deviceType", required = false) String deviceType,
             @RequestParam(value = "page", required = false) Integer page,
-            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+            @RequestParam(value = "rows", required = false) Integer pageSize) {
         PageInfo<DeviceType> pageInfo = null;
         try {
+            DeviceType deviceTypeO = JSON.parseObject(deviceType,DeviceType.class);
             pageInfo = deviceTypeServiceImpl.selectByPage(null, page == null ? 1 : page, pageSize == null ?
                     Integer.MAX_VALUE : pageSize);
         } catch (Exception ex) {
@@ -70,6 +78,9 @@ public class DeviceTypeController {
         RestResponse result = new RestResponse();
         try {
             Integer r = deviceTypeServiceImpl.insert(deviceType);
+            deviceType.setUserId(UUID.randomUUID().toString().replace("-",""));
+            deviceType.setCreateTime(new Date().getTime());
+            deviceType.setUpdateTime(new Date().getTime());
             if (r > 0) {
                 result.setSuccess(true).setMessage("success");
             } else {
@@ -156,6 +167,7 @@ public class DeviceTypeController {
                                  @RequestBody DeviceType deviceType) {
         RestResponse result = new RestResponse();
         try {
+            deviceType.setUpdateTime(new Date().getTime());
             Integer r = deviceTypeServiceImpl.updateById(deviceType);
             if (r > 0) {
                 result.setSuccess(true).setMessage("success");
@@ -170,6 +182,5 @@ public class DeviceTypeController {
 
         return result;
     }
-
 
 }
