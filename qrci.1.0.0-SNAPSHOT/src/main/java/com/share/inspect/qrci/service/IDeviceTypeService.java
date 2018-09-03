@@ -24,8 +24,7 @@ public interface IDeviceTypeService {
      * @exception:
      * @date: 2018-8-28 21:37:27
      */
-    PageInfo<DeviceType> selectByPage(Map
-                                              <String, Object> param, Integer page, Integer pageSize) throws Exception;
+    PageInfo<DeviceType> selectByPage(DeviceType deviceType, Integer page, Integer pageSize) throws Exception;
 
 
     /**
@@ -60,7 +59,7 @@ public interface IDeviceTypeService {
      * @exception:
      * @date: 2018-8-28 21:37:27
      */
-    int deleteById(Long id) throws Exception;
+    int deleteById(String id) throws Exception;
 
     /**
      * 根据主键批量删除
@@ -83,7 +82,7 @@ public interface IDeviceTypeService {
      * @exception:
      * @date: 2018-8-28 21:37:27
      */
-    DeviceType selectById(Long id) throws Exception;
+    DeviceType selectById(String id) throws Exception;
 
 
 }

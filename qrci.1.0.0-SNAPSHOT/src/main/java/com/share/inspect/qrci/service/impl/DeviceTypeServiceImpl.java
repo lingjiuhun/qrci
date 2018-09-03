@@ -1,5 +1,6 @@
 package com.share.inspect.qrci.service.impl;
 
+import com.code.base.util.utils.ValidateUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.share.inspect.qrci.dao.mapper.DeviceTypeMapper;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -37,12 +39,11 @@ public class DeviceTypeServiceImpl implements IDeviceTypeService {
      * @date: 2018-8-28 21:37:27
      */
     @Override
-    public PageInfo<DeviceType> selectByPage(Map
-                                                     <String, Object> param, Integer page, Integer pageSize) throws Exception {
+    public PageInfo<DeviceType> selectByPage(DeviceType deviceType, Integer page, Integer pageSize) throws Exception {
         int limit = pageSize != null ? pageSize : 10;
         int offset = (page != null ? page : 1);
         PageHelper.startPage(offset, limit);
-
+        Map <String, Object> param = new HashMap<String, Object>();
         List<DeviceType> datas = deviceTypeMapper.selectByPropertyByPage(param);
 
         PageInfo<DeviceType> pageInfo = new PageInfo<>(datas);
@@ -112,10 +113,10 @@ public class DeviceTypeServiceImpl implements IDeviceTypeService {
      * @date: 2018-8-28 21:37:27
      */
     @Override
-    public int deleteById(Long id) throws Exception {
+    public int deleteById(String id) throws Exception {
         int r = 0;
 //id非空判断
-        if (id == null || id == 0) {
+        if (id == null || "".equals(id)) {
             return -1;
         }
 //数据删除
@@ -156,10 +157,10 @@ public class DeviceTypeServiceImpl implements IDeviceTypeService {
      * @exception:
      * @date: 2018-8-28 21:37:27
      */
-    public DeviceType selectById(Long id) throws Exception {
+    public DeviceType selectById(String id) throws Exception {
         DeviceType deviceType = null;
 //id非空判断
-        if (id != null || id > 0) {
+        if (ValidateUtils.isNotNullStr(id)) {
             deviceType = deviceTypeMapper.selectByPrimaryKey(id);
         }
         return deviceType;

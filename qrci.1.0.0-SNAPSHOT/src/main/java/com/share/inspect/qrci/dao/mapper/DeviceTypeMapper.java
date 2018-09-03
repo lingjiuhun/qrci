@@ -26,7 +26,7 @@ public interface DeviceTypeMapper {
      * @exception:
      * @date: 2018-8-28 21:37:19
      */
-    DeviceType selectByPrimaryKey(Long id);
+    DeviceType selectByPrimaryKey(String id);
 
     /**
      * 根据主键删除
@@ -37,7 +37,7 @@ public interface DeviceTypeMapper {
      * @exception:
      * @date: 2018-8-28 21:37:19
      */
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     /**
      * 根据主键批量删除

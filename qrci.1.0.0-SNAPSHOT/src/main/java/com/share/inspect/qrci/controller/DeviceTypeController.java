@@ -77,10 +77,11 @@ public class DeviceTypeController {
     public RestResponse doAdd(@RequestBody DeviceType deviceType) {
         RestResponse result = new RestResponse();
         try {
-            Integer r = deviceTypeServiceImpl.insert(deviceType);
-            deviceType.setUserId(UUID.randomUUID().toString().replace("-",""));
+            String id = UUID.randomUUID().toString().replace("-","");
+            deviceType.setId(id);
             deviceType.setCreateTime(new Date().getTime());
             deviceType.setUpdateTime(new Date().getTime());
+            Integer r = deviceTypeServiceImpl.insert(deviceType);
             if (r > 0) {
                 result.setSuccess(true).setMessage("success");
             } else {
@@ -136,7 +137,7 @@ public class DeviceTypeController {
      */
     @ApiOperation(value = "根据id获取权限信息", notes = "根据id获取权限信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public RestResponse<DeviceType> doGetDetail(@PathVariable Long id) {
+    public RestResponse<DeviceType> doGetDetail(@PathVariable String id) {
         RestResponse result = new RestResponse();
         try {
             DeviceType deviceType = deviceTypeServiceImpl.selectById(id);
@@ -163,7 +164,7 @@ public class DeviceTypeController {
      */
     @ApiOperation(value = "编辑权限", notes = "编辑权限")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public RestResponse doUpdate(@PathVariable Long id,
+    public RestResponse doUpdate(@PathVariable String id,
                                  @RequestBody DeviceType deviceType) {
         RestResponse result = new RestResponse();
         try {

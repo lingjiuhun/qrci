@@ -374,7 +374,7 @@
 			});
 		});
 	},// 搜索
-	search : function(url, params) {
+	search : function(url, paramsText) {
 		// 开始时间和结束时间对比
         var startDate = $.trim($('.startDate').val());
         var endDate = $.trim($('.endDate').val());
@@ -383,7 +383,7 @@
             return ;
         } 
 		var text = "";
-		params += "={'date':'" + new Date().getTime() + "'";
+		params = "{'date':'" + new Date().getTime() + "'";
 		$('form input[ gps="form"]').each(function() {
 			params += ",'" + $(this).attr('name') + "'";
 			if(!$(this).hasClass("startDate") && !$(this).hasClass("endDate") && $.trim($(this).val()) != '' ){
@@ -405,6 +405,9 @@
 		});
 		params += "}";
 		if(text == ""){params = "date=" + new Date().getTime() + "";}
+      //  var params = eval("("+params+")");
+     //   params = JSON.stringify(params);
+        params = paramsText + '='+encodeURI(params);
 		if(url.indexOf('?') != -1){
 			url = url+"&"+ params;
 		}else{
@@ -530,7 +533,7 @@
   	tablePlugin : function(url,caption, colNames, colModel) {
   		$("#"+page_util.id).jqGrid({
             repeatitems : false,
-            jsonReader : {root:'data.list',total:'data.total',pageSize:'pageSize'},
+            jsonReader : {root:'data.list',total:'data.pages',records:'data.total',page:'data.pageNum'},
                 url : url,
   			caption : caption,
   			mtype : page_util.mtype,

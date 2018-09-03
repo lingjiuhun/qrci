@@ -4,7 +4,7 @@ public class DeviceType {
     /**
      * 主键
      */
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -36,7 +36,7 @@ public class DeviceType {
      *
      * @return id 主键
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class DeviceType {
      *
      * @param id 主键
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
