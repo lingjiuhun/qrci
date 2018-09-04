@@ -59,7 +59,7 @@ public class DeviceTypeController {
             log.error(ex.getMessage());
         }
 
-        return new RestResponse().setSuccess(true).setMessage("success").setData(pageInfo);
+        return new RestResponse().setSuccess(true).setMessage("查询成功").setData(pageInfo);
     }
 
 
@@ -83,14 +83,14 @@ public class DeviceTypeController {
             deviceType.setUpdateTime(new Date().getTime());
             Integer r = deviceTypeServiceImpl.insert(deviceType);
             if (r > 0) {
-                result.setSuccess(true).setMessage("success");
+                result.setSuccess(true).setMessage("新增成功");
             } else {
-                result.setSuccess(false).setMessage("fail");
+                result.setSuccess(false).setMessage("新增失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
-            result.setSuccess(false).setMessage("fail");
+            result.setSuccess(false).setMessage("新增失败");
         }
         return result;
     }
@@ -112,14 +112,14 @@ public class DeviceTypeController {
         try {
             Integer r = deviceTypeServiceImpl.deleteBatchByIds(PageUtil.getIdsForList(id));
             if (r > 0) {
-                result.setSuccess(true).setMessage("success");
+                result.setSuccess(true).setMessage("删除成功");
             } else {
-                result.setSuccess(false).setMessage("fail");
+                result.setSuccess(false).setMessage("删除失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
-            result.setSuccess(false).setMessage("fail");
+            result.setSuccess(false).setMessage("删除失败");
         }
 
         return result;
@@ -141,11 +141,11 @@ public class DeviceTypeController {
         RestResponse result = new RestResponse();
         try {
             DeviceType deviceType = deviceTypeServiceImpl.selectById(id);
-            result.setSuccess(true).setMessage("success").setData(deviceType);
+            result.setSuccess(true).setMessage("查询成功").setData(deviceType);
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
-            result.setSuccess(false).setMessage("fail");
+            result.setSuccess(false).setMessage("查询失败");
         }
 
         return result;
@@ -171,14 +171,14 @@ public class DeviceTypeController {
             deviceType.setUpdateTime(new Date().getTime());
             Integer r = deviceTypeServiceImpl.updateById(deviceType);
             if (r > 0) {
-                result.setSuccess(true).setMessage("success");
+                result.setSuccess(true).setMessage("编辑成功");
             } else {
-                result.setSuccess(false).setMessage("fail");
+                result.setSuccess(false).setMessage("编辑失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
-            result.setSuccess(false).setMessage("fail");
+            result.setSuccess(false).setMessage("编辑失败");
         }
 
         return result;

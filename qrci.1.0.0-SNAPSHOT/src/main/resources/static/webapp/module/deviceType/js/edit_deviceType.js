@@ -12,8 +12,11 @@
 			button_util.listUrl = this.listUrl;
 			//
             var userId = window.location.href.split("id=")[1];
-			// 调用分页插件初始化列表
-			button_util.submitForm(this.url+userId,this.name,this.listUrl,'put');
+            // 表单校验
+            if(validator_util.requiredValidator()) {
+                // 调用分页插件初始化列表
+                button_util.submitForm(this.url + userId, this.name, this.listUrl, 'put');
+            }
 		},
 		// 返回按钮事件
 		goback : function(){

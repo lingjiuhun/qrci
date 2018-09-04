@@ -130,7 +130,31 @@
 			            return unescape(r[2]);
 			        }
 			        return null;
-			    }
+			    },formateDateStr : function(longtime){
+    		  	var date = new Date(longtime);
+				var y =  date.getUTCFullYear();// 获取年
+		        var m = date.getUTCMonth() ;// 获取月
+				 if(m <10){
+					m = '0'+m;
+				 }
+				 var d = date.getUTCDate();// 获取日
+				 if(d <10){
+                     d = '0'+d;
+				 }
+				 var h= date.getUTCHours();// 获取小时
+				 if(h <10){
+                     h = '0'+h;
+				 }
+				 var M = date.getUTCMinutes();// 获取分钟
+				 if(M <10){
+                     M = '0'+M;
+				 }
+				 var s = date.getUTCSeconds();// 获取秒钟
+				 if(s <10){
+					 s = '0'+s;
+				 }
+		 			return y+'-'+m+'-'+d+" "+h+":"+M+":"+s;
+				 }
      };
 /**
  * 基础核心插件 - 按钮控件

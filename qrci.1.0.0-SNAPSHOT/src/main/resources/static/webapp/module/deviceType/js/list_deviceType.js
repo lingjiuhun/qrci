@@ -26,14 +26,12 @@
 		               ,{ name: 'comment', index: 'comment', width: 10}
 		               ,{ name: 'createTime', index: 'createTime', width: 10,
 		            	   formatter:function(cellvalue, options, rowObject){
-		               			return cellvalue;
-		            		  // return cellvalue.substring(0,11);
+                               return tool_util.formateDateStr(cellvalue);
 		            	   }
 		               }
 		               ,{ name: 'updateTime', index: 'updateTime', width: 10,
 		            	   formatter:function(cellvalue, options, rowObject){
-		               			return cellvalue;
-		            		  // return cellvalue.substring(0,11);
+		               			return tool_util.formateDateStr(cellvalue);
 		            	   }
 		               }
 		           ];
